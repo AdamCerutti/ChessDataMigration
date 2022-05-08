@@ -21,7 +21,7 @@ public class ChessData {
 		
 		// Build up list of unique game states
 		System.out.println(new SimpleDateFormat("MMM dd hh:mm:ssa").format(new Date()) + " | Eliminating duplicate game states...");
-		List<String> fen_states = new ArrayList<>();
+		Set<String> fen_states = new HashSet<>();
 		int prog = 0;
 		int i = 0;
 		for (Game game: pgn.getGames()) {
@@ -39,9 +39,7 @@ public class ChessData {
 	            board.doMove(move);
 	            String[] fenSplit = board.getFen().split(" ");
 	            String fen = fenSplit[0] + " " + fenSplit[1] + " " + fenSplit[2];	//Cut off everything after castling
-				if (!fen_states.contains(fen)) {
-					fen_states.add(fen);
-				}
+				fen_states.add(fen);
 	        }
 		}
 

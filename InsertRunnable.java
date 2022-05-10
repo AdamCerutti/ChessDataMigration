@@ -13,12 +13,13 @@ public class InsertRunnable implements Runnable {
     
     public void run() {
         Connection tmp = new ConnectToDB().EstablishConnection();
-		    try {
-			    Statement insert = tmp.createStatement();
-		  	  insert.execute(this.query);
-	  		  insert.close();
-	  	  } catch (SQLException e) {
-		  	  e.printStackTrace();
-		    }
+	try {
+	    Statement insert = tmp.createStatement();
+	    insert.execute(this.query);
+	    insert.close();
+	    tmp.close();
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
     }
 }
